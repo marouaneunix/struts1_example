@@ -7,6 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Produits</title>
 <link  rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+<SCRIPT language="javascript" type="text/javascript">
+      function setOperation(valeur){
+        document.forms[2].operation.value=valeur;
+      }
+    </SCRIPT>
 </head>
 <body>
 	<div class="container">
@@ -54,6 +59,49 @@
 	  				<p></p>
 			</logic:iterate>
 		</table>
+	</div>
+	<div>
+	  <s:form action="operations.do" focusIndex="reference">
+        <table>
+          <tr>
+            <td>
+              <bean:message key="app.saisirproduit.libelle.reference"/>:
+            </td>
+            <td>
+              <s:text property="reference"/>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="center">
+              <s:submit property="operation">ajouter</s:submit>
+              <s:submit property="operation">modifier</s:submit>
+              <s:submit property="operation">supprimer</s:submit>
+            </td>
+          </tr>
+        </table>
+      </s:form>
+		<s:form action="operations.do" focusIndex="reference">
+        <s:hidden property="operation" value="aucune"/>  
+        
+        <table>
+          <tr>
+            <td>
+              <bean:message key="app.saisirproduit.libelle.reference"/>:
+            </td>
+            <td>
+              <s:text property="reference"/>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="center">
+              <s:submit property="submit" styleClass="btn btn-default" onclick="setOperation('ajouter');" value="ajouter"/>
+              <s:submit property="submit" styleClass="btn btn-default" onclick="setOperation('modifier');" value="aodifier"/>
+              <s:submit property="submit" styleClass="btn btn-default" onclick="setOperation('supprimer');" value="supprimer"/>
+              
+            </td>
+          </tr>
+        </table>
+      </s:form>
 	</div>
 	</div>
 	

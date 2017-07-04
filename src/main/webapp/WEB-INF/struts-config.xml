@@ -46,8 +46,10 @@
       <forward name="succes" path="/views/produits.jsp" redirect="false" />
     </action>
   
+  	<!--  -->
   	<action path="/operations" type="com.mar1.web.action.OperationsAction"
             name="operationsForm" scope="request" validate="true" parameter="operation">
+    
       <forward name="succes" path="/operations.jsp"/>
     </action>
     
