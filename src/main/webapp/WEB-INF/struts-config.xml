@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+<!--  
+	<form-beans>
+	   <form-bean name="helloWorldForm"
+		type="com.mar1.common.form.HelloWorldForm"/>
+	</form-beans>
+
+	<action-mappings>
+	   <action path="/helloWorld"
+		type="com.mar1.common.action.HelloWorldAction"
+		name="helloWorldForm">
+		<forward name="success" path="/HelloWorld.jsp"/>
+
+	   </action>
+	</action-mappings>
+	
+	<form-beans type="org.apache.struts.action.ActionFormBean">
+		<form-bean name="loginForm" type="com.mar1.common.form.LoginForm" />
+	</form-beans>
+	<action-mappings type="org.apache.struts.action.ActionMapping">
+    <action path="/login" parameter="" input="/index.jsp" scope="request"
+	  name="loginForm" type="com.mar1.common.action.LoginAction" validate="true" >
+      <forward name="succes" path="/accueil.jsp" redirect="false" />
+      <forward name="echec" path="/index.jsp" redirect="false" />
+    </action>
+  </action-mappings>
+  -->
+  <form-beans type="org.apache.struts.action.ActionFormBean">
+  	
+  	<form-bean name="produitForm" type="com.mar1.web.form.ProduitForm" />
+  	
+  	<form-bean name="operationsForm" type="org.apache.struts.action.DynaActionForm">
+      <form-property name="operation" type="java.lang.String"/>
+      <form-property name="reference" type="java.lang.String"/>
+    </form-bean>
+    
+  </form-beans>
+  <action-mappings type="org.apache.struts.action.ActionMapping">
+  
+    <action path="/produits" parameter="" input="/views/produits.jsp" scope="request"
+	  name="produitForm" type="com.mar1.web.action.ProduitAction" validate="true" >
+      <forward name="succes" path="/views/produits.jsp" redirect="false" />
+    </action>
+  
+  	<action path="/operations" type="com.mar1.web.action.OperationsAction"
+            name="operationsForm" scope="request" validate="true" parameter="operation">
+      <forward name="succes" path="/operations.jsp"/>
+    </action>
+    
+  </action-mappings>
+<message-resources parameter="messageResources"/>
+
+</struts-config>
