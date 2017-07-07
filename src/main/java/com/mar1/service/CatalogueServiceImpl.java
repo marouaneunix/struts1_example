@@ -22,32 +22,27 @@ public class CatalogueServiceImpl implements ICatalogueService {
 		this.mapper = mapper;
 	}
 
-	@Override
 	public void addProduit(ProduitForm p) {
 		// TODO Auto-generated method stub
 		this.dao.addProduit(this.mapper.map(p, Produit.class));
 	}
 
-	@Override
 	public List<ProduitForm> listProduits() {
 		// TODO Auto-generated method stub
 		return this.dao.listProduits().stream().map(produit -> this.mapper.map(produit, ProduitForm.class))
 				.collect(Collectors.toList());
 	}
 
-	@Override
 	public ProduitForm getProduit(String reference) {
 		// TODO Auto-generated method stub
 		return this.mapper.map(this.dao.getProduit(reference), ProduitForm.class);
 	}
 
-	@Override
 	public void deleteProduit(String reference) {
 		// TODO Auto-generated method stub
 		this.dao.deleteProduit(reference);
 	}
 
-	@Override
 	public void updateProduit(ProduitForm p) {
 		// TODO Auto-generated method stub
 		this.dao.updateProduit(this.mapper.map(p, Produit.class));

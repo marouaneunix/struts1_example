@@ -11,33 +11,24 @@ public class CatalogueDAOImpl implements ICatalogueDAO {
 
 	private final Map<String, Produit> produits = new HashMap<String, Produit>();
 
-	@Override
 	public void addProduit(Produit p) {
-		// TODO Auto-generated method stub
 		this.produits.put(p.getReference(), p);
 	}
 
-	@Override
 	public List<Produit> listProduits() {
-		// TODO Auto-generated method stub
 		return new ArrayList<>(this.produits.values());
 	}
 
-	@Override
 	public Produit getProduit(String reference) {
-		// TODO -generated method stub
 		return this.produits.get(reference);
 	}
 
-	@Override
 	public void deleteProduit(String reference) {
 		this.produits.remove(reference);
 
 	}
 
-	@Override
 	public void updateProduit(Produit p) {
-		// TODO Auto-generated method stub
 		this.produits.put(p.getReference(), p);
 	}
 

@@ -7,10 +7,34 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Produits</title>
 <link  rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <SCRIPT language="javascript" type="text/javascript">
-      function setOperation(valeur){
-        document.forms[2].operation.value=valeur;
+      function setOperation(action,id){
+    	  var form = document.createElement("form");
+    	   form.method = "POST";
+    	   form.action = "/strutsApp/produits.do";
+    	   var element1 = document.createElement("INPUT");         
+    	    element1.name="operation"
+    	    element1.value = action;
+    	    element1.type = 'hidden';
+    	    form.appendChild(element1);
+    	    var reference = document.createElement("INPUT");         
+    	    reference.name="reference"
+    	    reference.value = id;
+    	    reference.type = 'text';
+    	    form.appendChild(reference);
+    	    document.body.appendChild(form);
+    	  // form.operation.value=action
+    	  // form.id.value=id
+    	  
+    form.submit();
+       // document.forms[2].operation.value=valeur;
       }
+      
+      function setOperation1(valeur){
+          document.forms[1].operation.value=valeur;
+        }
     </SCRIPT>
 </head>
 <body>
@@ -46,7 +70,7 @@
 	
 		<table class="table table-bordered">
 			<tr>
-				<th>REF</th><th>DES</th><th>PRIX</th><th>QTE</th><th>PROMO</th>
+				<th>REF</th><th>DES</th><th>PRIX</th><th>QTE</th><th>PROMO</th><th>SUPP</th><th>UPD</th>
 			</tr>
 			<logic:iterate id="monProduit" name="produitForms" scope="session">
 				<tr>
@@ -55,31 +79,18 @@
 					<td><bean:write name="monProduit" property="prix"/></td>
 					<td><bean:write name="monProduit" property="quantite"/></td>
 					<td><bean:write name="monProduit" property="promo"/></td>
+					<td><button  class="btn btn-danger" onclick="setOperation('supprimer','<bean:write name="monProduit" property="reference"/>');">Supprimer</button>
+					</td>
+					<td><button class="btn btn-success" onclick="setOperation('modifier','<bean:write name="monProduit" property="reference"/>');">Modifier</button>
+					</td>
+					
 				</tr>
 	  				<p></p>
 			</logic:iterate>
 		</table>
 	</div>
 	<div>
-	  <s:form action="operations.do" focusIndex="reference">
-        <table>
-          <tr>
-            <td>
-              <bean:message key="app.saisirproduit.libelle.reference"/>:
-            </td>
-            <td>
-              <s:text property="reference"/>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2" align="center">
-              <s:submit property="operation">ajouter</s:submit>
-              <s:submit property="operation">modifier</s:submit>
-              <s:submit property="operation">supprimer</s:submit>
-            </td>
-          </tr>
-        </table>
-      </s:form>
+	 
 		<s:form action="operations.do" focusIndex="reference">
         <s:hidden property="operation" value="aucune"/>  
         
@@ -94,9 +105,9 @@
           </tr>
           <tr>
             <td colspan="2" align="center">
-              <s:submit property="submit" styleClass="btn btn-default" onclick="setOperation('ajouter');" value="ajouter"/>
-              <s:submit property="submit" styleClass="btn btn-default" onclick="setOperation('modifier');" value="aodifier"/>
-              <s:submit property="submit" styleClass="btn btn-default" onclick="setOperation('supprimer');" value="supprimer"/>
+              <s:submit property="submit" styleClass="btn btn-default" onclick="setOperation1('ajouter');" value="ajouter"/>
+              <s:submit property="submit" styleClass="btn btn-default" onclick="setOperation1('modifier');" value="aodifier"/>
+              <s:submit property="submit" styleClass="btn btn-default" onclick="setOperation1('supprimer');" value="supprimer"/>
               
             </td>
           </tr>
